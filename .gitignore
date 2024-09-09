@@ -1,20 +1,20 @@
 # Node modules
+backend/node_modules/
 node_modules/
-
 # Logs
-logs/
+backend/logs/
 *.log
 
 # Environment variables
-.env
+backend/.env
 
 # OS-specific files
 .DS_Store
 Thumbs.db
 
 # Build output
-dist/
-build/
+backend/dist/
+backend/build/
 
 # IDE files
 .vscode/
