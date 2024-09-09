@@ -10,3 +10,6 @@ services:
       - influxdb-storage:/var/lib/influxdb2
 volumes:
   influxdb-storage:
+networks:
+  influxdb_nk:  
+    external: true
