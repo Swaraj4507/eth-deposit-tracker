@@ -23,7 +23,7 @@ const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN);
 const chatId = process.env.TELEGRAM_CHAT_ID;
 
 // Function to process transaction and send Telegram notification
-function processTransaction(msg) {
+async function processTransaction(msg) {
   const tx = JSON.parse(msg.content.toString());
   const { hash, from, value, gasPrice, pubkey, blockNumber, blockTimestamp } = tx;
   // Convert value and gasPrice back to BigNumber
