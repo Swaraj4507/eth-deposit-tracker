@@ -22,10 +22,13 @@ const logger = winston.createLogger({
 
 // Connect to Ethereum using Alchemy
 const provider = new ethers.providers.AlchemyProvider("homestead", process.env.ALCHEMY_API_KEY);
+
+
 const beaconContractAddress = process.env.BEACON_CONTRACT_ADDRESS.toLowerCase();
 
 // RabbitMQ configuration
 const RABBITMQ_URL = process.env.RABBITMQ_URL || 'amqp://localhost';
+// const RABBITMQ_URL = process.env.RABBITMQ_URL || 'amqp://rabbitmqc';
 const QUEUE_INFLUXDB = 'influxdb_queue';
 const QUEUE_TELEGRAM = 'telegram_queue';
 

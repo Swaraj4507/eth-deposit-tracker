@@ -26,6 +26,7 @@ const writeApi = influxDB.getWriteApi(process.env.INFLUXDB_ORG, process.env.INFL
 writeApi.useDefaultTags({ app: 'eth-deposit-tracker' });
 
 const RABBITMQ_URL = process.env.RABBITMQ_URL || 'amqp://localhost';
+// const RABBITMQ_URL = process.env.RABBITMQ_URL || 'amqp://rabbitmqc';
 const QUEUE_INFLUXDB = 'influxdb_queue';
 
 // Function to process transactions and save to InfluxDB
@@ -45,7 +46,7 @@ async function processTransaction(msg) {
   const formattedFee = ethers.utils.formatEther(fee);
 
 
-  const point = new Point('testing')
+  const point = new Point('deposits')
     .tag('tx_hash', hash)
     .tag('from_address', from)
     .tag('pubkey', pubkey || 'unknown')

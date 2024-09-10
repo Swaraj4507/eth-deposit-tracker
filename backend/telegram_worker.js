@@ -18,9 +18,29 @@ const logger = winston.createLogger({
 });
 
 const RABBITMQ_URL = process.env.RABBITMQ_URL || 'amqp://localhost';
+// const RABBITMQ_URL = process.env.RABBITMQ_URL || 'amqp://rabbitmqc';
 const QUEUE_TELEGRAM = 'telegram_queue';
+
 const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN);
 const chatId = process.env.TELEGRAM_CHAT_ID;
+
+//Use this script to know your chatid 
+//Just send  messages to your bot for few times you will see botid
+
+// const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, { polling: true });
+
+// // When any message is received, log the chatId
+// bot.on('message', (msg) => {
+//   const chatId = msg.chat.id;
+  
+//   // Send a confirmation message with the chatId
+//   bot.sendMessage(chatId, `Your chat ID is: ${chatId}`);
+  
+//   console.log(`Chat ID: ${chatId}`);
+  
+//   // Optionally, you can stop polling after getting the chatId
+//   bot.stopPolling();
+// });
 
 // Function to process transaction and send Telegram notification
 async function processTransaction(msg) {
