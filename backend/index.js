@@ -9,16 +9,7 @@ bot.on('message', (msg) => {
   const chatId = msg.chat.id;
   console.log(`Your chat ID: ${chatId}`);
 });
-// function sendTestMessage() {
-//   bot.sendMessage('1729687381', 'Test message from Ethereum Deposit Tracker!')
-//     .then(() => {
-//       console.log('Test message sent successfully');
-//     })
-//     .catch((error) => {
-//       console.error('Error sending test message:', error);
-//     });
-// }
-// sendTestMessage()
+
 const app = express();
 const PORT = process.env.PORT || 3030;
 // InfluxDB configurations from environment variables
@@ -36,26 +27,6 @@ const beaconContractAddress = process.env.BEACON_CONTRACT_ADDRESS;
 
 // To avoid processing the same transaction multiple times
 const processedTransactions = new Set();
-
-// async function logSampleData() {
-//   console.log('Writing sample data to InfluxDB');
-
-//   const point = new Point('s2')
-//     .tag('test_tag', 'sample')
-//     .floatField('value', Math.random() * 100) // Using floatField for numeric data
-//     .timestamp(new Date());
-
-//   // Write the data point to InfluxDB
-//   try {
-//     writeApi.writePoint(point);
-//     console.log('Sample data saved to InfluxDB');
-//   } catch (error) {
-//     console.error('Error writing sample data to InfluxDB:', error);
-//   }
-// }
-
-// // Call the function when the server starts
-// logSampleData();
 
 
 
@@ -92,6 +63,7 @@ provider.on("block", async (blockNumber) => {
     console.error(`Error processing block ${blockNumber}:`, error);
   }
 });
+
 
 
 function sendTelegramMessage(message) {
@@ -147,23 +119,7 @@ async function logDepositTransaction(tx) {
 }
 
 
-// async function checkInfluxDBConnection() {
-//   const queryApi = influxDB.getQueryApi(process.env.INFLUXDB_ORG);
-  
-//   try {
-//     // Perform a simple query to check health
-//     const result = await queryApi.collectRows(`from(bucket: "${process.env.INFLUXDB_BUCKET}") |> range(start: -1m)`);
-//     if (result.length > 0) {
-//       console.log('InfluxDB connection is healthy');
-//     } else {
-//       console.error('InfluxDB query returned no results');
-//     }
-//   } catch (error) {
-//     console.error('Error checking InfluxDB connection:', error);
-//   }
-// }
 
-// checkInfluxDBConnection();
 process.on('exit', () => {
   writeApi
     .close()

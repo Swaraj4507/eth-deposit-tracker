@@ -1,0 +1,17 @@
+// async function checkInfluxDBConnection() {
+//   const queryApi = influxDB.getQueryApi(process.env.INFLUXDB_ORG);
+  
+//   try {
+//     // Perform a simple query to check health
+//     const result = await queryApi.collectRows(`from(bucket: "${process.env.INFLUXDB_BUCKET}") |> range(start: -1m)`);
+//     if (result.length > 0) {
+//       console.log('InfluxDB connection is healthy');
+//     } else {
+//       console.error('InfluxDB query returned no results');
+//     }
+//   } catch (error) {
+//     console.error('Error checking InfluxDB connection:', error);
+//   }
+// }
+
+// checkInfluxDBConnection();
